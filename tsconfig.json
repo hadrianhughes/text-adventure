@@ -18,14 +18,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
-    "paths": {
-      "types": ["src/types"],
-      "@action": ["src/action"],
-      "@action/*": ["src/action/*"],
-      "@parser": ["src/parser"],
-      "@parser/*": ["src/parser/*"]
-    }
+    "jsx": "react-jsx"
   },
   "include": [
     "src"

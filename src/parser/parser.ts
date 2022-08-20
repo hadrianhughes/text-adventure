@@ -1,5 +1,5 @@
-import { Action, ActionType, ApproachAction, isActionType, WalkAction } from '@action'
-import { Result } from 'types'
+import { Action, ActionType, ApproachAction, isActionType, WalkAction } from '../action'
+import { Result } from '../types'
 import { LexResult } from './lexer'
 
 const parseApproach = (args: string[]): Result<ApproachAction> => {
