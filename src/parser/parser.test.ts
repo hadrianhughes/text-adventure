@@ -22,18 +22,21 @@ describe('parser: approach cmd', () => {
     expect(left(result) instanceof Error).toBe(true)
   })
 
-  it('Should return an error on the left when the command has too many arguments', () => {
-    const result = parser('approach one two')
-    expect(right(result)).toBe(null)
-    expect(left(result) instanceof Error).toBe(true)
-  })
-
   it('Should return an ApproachAction when the input is valid', () => {
     const result = parser('approach tree')
     expect(left(result)).toBe(null)
     expect(right(result)).toEqual({
       type: 'approach',
       payload: 'tree',
+    })
+  })
+
+  it('Should return an ApproachAction with payload including spaces when given a more than 2 word input', () => {
+    const result = parser('approach left tree')
+    expect(left(result)).toBe(null)
+    expect(right(result)).toEqual({
+      type: 'approach',
+      payload: 'left tree',
     })
   })
 })
@@ -45,18 +48,21 @@ describe('parser: walk cmd', () => {
     expect(left(result) instanceof Error).toBe(true)
   })
 
-  it('Should return an error on the left when the command has too many arguments', () => {
-    const result = parser('walk one two')
-    expect(right(result)).toBe(null)
-    expect(left(result) instanceof Error).toBe(true)
-  })
-
   it('Should return a WalkAction when the input is valid', () => {
     const result = parser('walk north')
     expect(left(result)).toBe(null)
     expect(right(result)).toEqual({
       type: 'walk',
       payload: 'north',
+    })
+  })
+
+  it('Should return an ApproachAction with payload including spaces when given a more than 2 word input', () => {
+    const result = parser('walk left road')
+    expect(left(result)).toBe(null)
+    expect(right(result)).toEqual({
+      type: 'walk',
+      payload: 'left road',
     })
   })
 })

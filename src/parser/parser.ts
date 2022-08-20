@@ -2,31 +2,19 @@ import { Action, ActionType, ApproachAction, isActionType, WalkAction } from '..
 import { Result } from '../types'
 import { LexResult } from './lexer'
 
-const parseApproach = (args: string[]): Result<ApproachAction> => {
-  if (args.length === 0 || args.length > 1) {
-    return { left: new Error('`approach` command accepts a single argument') }
-  }
+const parseApproach = (args: string[]): Result<ApproachAction> => ({
+  right: {
+    type: 'approach',
+    payload: args.join(' '),
+  },
+})
 
-  return {
-    right: {
-      type: 'approach',
-      payload: args[0],
-    },
-  }
-}
-
-const parseWalk = (args: string[]): Result<WalkAction> => {
-  if (args.length === 0 || args.length > 1) {
-    return { left: new Error('`approach` command accepts a single argument') }
-  }
-
-  return {
-    right: {
-      type: 'walk',
-      payload: args[0],
-    },
-  }
-}
+const parseWalk = (args: string[]): Result<WalkAction> => ({
+  right: {
+    type: 'walk',
+    payload: args.join(' '),
+  },
+})
 
 const parse = ([mainCmd, args]: LexResult): Result<Action> => {
   if (!isActionType(mainCmd)) {
