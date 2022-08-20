@@ -2,14 +2,16 @@ import { Action, ActionType, ApproachAction, isActionType, WalkAction } from '..
 import { Result } from '../types'
 import { LexResult } from './lexer'
 
-const parseApproach = (args: string[]): Result<ApproachAction> => ({
+type Parser<T> = (args: string[]) => Result<T>
+
+const parseApproach: Parser<ApproachAction> = args => ({
   right: {
     type: 'approach',
     payload: args.join(' '),
   },
 })
 
-const parseWalk = (args: string[]): Result<WalkAction> => ({
+const parseWalk: Parser<WalkAction> = args => ({
   right: {
     type: 'walk',
     payload: args.join(' '),
