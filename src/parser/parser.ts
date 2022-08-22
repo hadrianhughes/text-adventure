@@ -7,7 +7,7 @@ type Parser<T> = (args: string[]) => Result<T>
 const parseApproach: Parser<ApproachAction> = args => {
   if (args.length === 0) {
     return {
-      left: new Error('parse error: approach command requires an argument'),
+      left: new Error('parser: approach command requires an argument'),
     }
   }
 
@@ -22,7 +22,7 @@ const parseApproach: Parser<ApproachAction> = args => {
 const parseWalk: Parser<WalkAction> = args => {
   if (args.length === 0) {
     return {
-      left: new Error('parse error: walk command requires an argument')
+      left: new Error('parser: walk command requires an argument')
     }
   }
 
@@ -36,7 +36,7 @@ const parseWalk: Parser<WalkAction> = args => {
 
 const parse = ([mainCmd, args]: LexResult): Result<Action> => {
   if (!isActionType(mainCmd)) {
-    return { left: new Error(`${mainCmd} is not a valid command`) }
+    return { left: new Error(`parser: ${mainCmd} is not a valid command`) }
   }
 
   const _mainCmd: ActionType = mainCmd
